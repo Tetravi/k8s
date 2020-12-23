@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firm-service-new
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firm-service-new
+  template:
+    metadata:
+      labels:
+        app: firm-service-new
+    spec:
+      containers:
+        -
+          image: poltorakyevheniia/firm-service-new
+          name: firm-service-new
+          ports:
+            - containerPort: 8120
+              name: rest

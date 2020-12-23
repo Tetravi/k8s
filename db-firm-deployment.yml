@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-firm-new
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-firm-new
+  template:
+    metadata:
+      labels:
+        app: db-firm-new
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              value: firmservice
+            - name: POSTGRES_PASSWORD
+              value: "123456"
+            - name: POSTGRES_USER
+              value: postgres
+          image: postgres
+          imagePullPolicy: IfNotPresent
+          name: db-firm-new
+          ports:
+            - containerPort: 5432

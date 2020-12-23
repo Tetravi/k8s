@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: delivery-service-new
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: delivery-service-new
+  template:
+    metadata:
+      labels:
+        app: delivery-service-new
+    spec:
+      containers:
+        -
+          image: poltorakyevheniia/delivery-service-new
+          name: order-service-new
+          ports:
+            - containerPort: 8100
+              name: rest

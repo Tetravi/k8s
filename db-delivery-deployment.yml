@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-delivery-new
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-delivery-new
+  template:
+    metadata:
+      labels:
+        app: db-delivery-new
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              value: deliveryservice
+            - name: POSTGRES_PASSWORD
+              value: "123456"
+            - name: POSTGRES_USER
+              value: postgres
+          image: postgres
+          imagePullPolicy: IfNotPresent
+          name: db-delivery-new
+          ports:
+            - containerPort: 5432
